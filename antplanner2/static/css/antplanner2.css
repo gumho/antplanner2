@@ -1,0 +1,17 @@
+html, body { height: 100%; }
+
+body {
+	margin: 0;
+}
+
+#cal {
+	width: 50%;
+	float: left;
+}
+
+#soc {
+	width: 50%;
+	height: 100%;
+	float: right;
+	border: none;
+}

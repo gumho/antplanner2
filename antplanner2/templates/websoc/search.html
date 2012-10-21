@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+    	a[href="/perl/WebSoc"], a[href="WebSoc"], input[value="Display Text Results"]{ 
+    		display: none; 
+    	}
+    </style>
+</head>
+<body>
+    {{form | safe}}
+</body>
+
+<script src="{{url_for('static', filename="js/jquery-1.4.4.min.js")}}"></script>
+
+<script>
+  //TODO: dont need jQuery for this...lol
+  $(document).ready(function() {
+    $('form').attr('action', '/websoc/search');
+  });
+</script>
+
+</html>

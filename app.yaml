@@ -1,0 +1,11 @@
+application: antplanner2
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /static
+  static_dir: antplanner2/static
+
+- url: .*
+  script: main.py

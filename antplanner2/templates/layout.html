@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Antplanner - {% block title %}{% endblock %}</title>
+    <link rel='stylesheet' type='text/css' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/smoothness/jquery-ui.css'>
+    <link rel="stylesheet" href="{{url_for('static', filename="css/jquery.weekcalendar.css")}}">
+    <link rel="stylesheet" href="{{url_for('static', filename="css/antplanner2.css")}}">
+  </head>
+  <body>
+    <div>
+      {% block content %}{% endblock %}
+    </div>
+
+    <script src="{{url_for('static', filename="js/jquery-1.4.4.min.js")}}"></script>
+    <script src="{{url_for('static', filename="js/jquery-ui-1.8.11.custom.min.js")}}"></script>
+    <script src="{{url_for('static', filename="js/date.js")}}"></script>
+    <script src="{{url_for('static', filename="js/jquery.weekcalendar.js")}}"></script>
+    <script src="{{url_for('static', filename="js/antplanner2.js")}}"></script>
+
+    <script>
+      {% block inline_scripts %}{% endblock %}
+    </script>
+  </body>
+</html>
