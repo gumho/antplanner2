@@ -3,14 +3,12 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-  <div id="cal"></div>
-  <iframe src="/websoc/search" id="soc" frameborder="0"></iframe>
-
+  <div id="cal"></div>  
+  <iframe src="{{url_for('websoc_search_form')}}" id="soc" frameborder="0"></iframe>
 {% endblock %}
 
 {% block inline_scripts %}
   $(document).ready(function() {
-
     $('#cal').weekCalendar({
       businessHours: {start: 6, end: 24, limitDisplay: true},
       showHeader: false,
@@ -22,7 +20,7 @@
       allowCalEventOverlap: true,
       overlapEventsSeparate: true,
       buttons: false,
-      height: function($calendar){ return $(window).height(); },
+      height: function($calendar){ return $(window).height() - $('nav').outerHeight(); },
       draggable : function(calEvent, element) { return false; },
       resizable : function(calEvent, element) { return false; },
       eventClick : function(calEvent, element) {
@@ -32,10 +30,16 @@
           if( c.groupId == delCode ) {
             $('#cal').weekCalendar('removeEvent', c.id);
           }
-        });         
-      }
+        });
 
-    })
+        localStorage.saved = JSON.stringify( $('#cal').weekCalendar('serializeEvents') );
+      },
+      data: function(start, end, callback) {
+        if(localStorage.saved) {
+          callback( JSON.parse(localStorage.saved) );
+        }
+      }
+    });
 
     $('#cal').weekCalendar('gotoWeek', new Date(APP_YEAR, APP_MONTH, APP_DAY));
 
@@ -77,9 +81,8 @@
             }
           }         
           
+          localStorage.saved = JSON.stringify( $('#cal').weekCalendar('serializeEvents') );
         })
     });
-
-
   });
 {% endblock %}
