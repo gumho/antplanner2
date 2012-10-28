@@ -7,7 +7,8 @@ logger = logging.getLogger(__name__)
 
 def get_search():
     html = urlfetch.fetch("http://websoc.reg.uci.edu").content
-    return BeautifulSoup(html).find('form', action='http://websoc.reg.uci.edu/perl/WebSoc')
+    inner = BeautifulSoup(html).find('form', action='http://websoc.reg.uci.edu/perl/WebSoc').renderContents()
+    return unicode(inner, errors='ignore')
 
 def get_listing(form_data):
     encoded = urllib.urlencode(form_data)
@@ -15,4 +16,4 @@ def get_listing(form_data):
         payload=encoded,
         method=urlfetch.POST,
         headers={'Content-Type': 'application/x-www-form-urlencoded'}).content
-    return BeautifulSoup(html).find('div', 'course-list')
+    return unicode(BeautifulSoup(html).find('div', 'course-list').encode(formatter='html'))
