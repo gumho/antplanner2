@@ -21,7 +21,8 @@ test( "3 Times", function( assert ) {
 module( "Parsed Course Times" )
 
 test( "6:00 - 8:50", function( assert ) {
-    var parsed = ParsedCourseTime('"Th &nbsp;  6:00-8:50"')
+    var parsed = ParsedCourseTime('"M &nbsp;  6:00-8:50"')
+    assert.deepEqual(parsed.days, [MON], 'days');
     assert.equal(parsed.beginHour, 6, 'begin hour');
     assert.equal(parsed.beginMin, 0, 'begin min');
     assert.equal(parsed.endHour, 8, 'end hour');
@@ -43,6 +44,12 @@ test( "7:00 - 8:50", function( assert ) {
 });
 
 test( "8:00 - 11:50", function( assert ) {
+    var parsed = ParsedCourseTime('Th &nbsp;8:00- 11:50  ')
+    assert.equal(parsed.beginHour, 8, 'begin hour');
+    assert.equal(parsed.endHour, 11, 'end hour');
+});
+
+test( "8:00 - 1:50p", function( assert ) {
     var parsed = ParsedCourseTime('Th &nbsp;8:00- 1:50p  ')
     assert.equal(parsed.beginHour, 8, 'begin hour');
     assert.equal(parsed.endHour, 13, 'end hour');
