@@ -1,14 +1,27 @@
 <html>
 <head>
   <title></title>
-  <style type="text/css">
-  .college-title, .college-comment, .dept-comment, .ccode-range-comment,
-  .title-bar, #reg-nav-bar, #contact-date, #RegBannerMain, #reg-banner-container {
-      display: none;
-  }
+      <style type="text/css">
+      body {
+        font-size: 14px !important;
+        font-family: sans-serif;
+      }
+      .dept-title {
+        background: #eee;
+        font-weight: bold;
+      }
+      .course-list tr {
+        font-size: 13px !important;
+        font-family: sans-serif;
+      }
+      .college-title, .college-comment, .dept-comment, .ccode-range-comment,
+      .title-bar, #reg-nav-bar, #contact-date, #RegBannerMain, #reg-banner-container {
+        display: none;
+      }
   </style>
 </head>
 <body>
+  <a href="javascript: history.go(-1)">Back to search</a>
   {{listing | safe}}
 </body>
 

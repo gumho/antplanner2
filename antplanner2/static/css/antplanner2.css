@@ -1,17 +1,44 @@
-html, body { height: 100%; }
+html { height: 100%; }
 
 body {
+	font-family: helvetica;
 	margin: 0;
+	color: #333;
 }
 
-#cal {
+a { color: #666; text-decoration: none;}
+a:hover { text-decoration: underline; }
+
+#cal-wrapper {
 	width: 50%;
 	float: left;
 }
 
+#cal-ctrl {
+	padding: 5px;
+}
+#cal-ctrl ul {
+	margin: 0;
+	padding: 0;
+	right: 0;
+}
+
+#cal-ctrl ul li {
+	display: inline;
+}
+
+#cal {
+	
+}
+
 #soc {
-	width: 50%;
 	height: 100%;
-	float: right;
-	border: none;
+	width: 50%;
+	float: left;
+}
+
+/* weekly calendar overrides */
+
+.wc-cal-event {
+	font-size: 10px !important;
 }

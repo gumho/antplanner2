@@ -147,3 +147,28 @@ function groupColorize() {
 	  colorEvent(this, tracking[c.groupId])
 	});
 }
+
+function isCourseAdded(courseCode, callback) {
+	var isAdded = false;
+	$('.wc-cal-event').each(function(index, el) {
+		var c = $(el).data().calEvent;
+		if(c.groupId == courseCode) {
+			isAdded = true;
+			return false; //break out of loop
+		}
+	});
+	return isAdded;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

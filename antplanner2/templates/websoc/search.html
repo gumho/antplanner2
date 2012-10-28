@@ -2,22 +2,33 @@
 <head>
     <title></title>
     <style type="text/css">
+      body {
+        margin: 5px 5px 0 5px;
+      }
+      a {
+        color: black; 
+        text-decoration: none;
+      }
+      .banner-width {
+        display: none;
+      }
+      input[type=submit] {
+        margin: 2px 0 7px 0;
+      }
     	a[href="/perl/WebSoc"], a[href="WebSoc"], input[value="Display Text Results"]{ 
     		display: none; 
     	}
+      font[color="red"] {
+        display: none;
+      }
     </style>
 </head>
 <body>
-    {{form | safe}}
+  <form action="{{url_for('websoc_search_form')}}" method="post">
+    <input type="submit" value="Search">
+    {{form_content | safe}}
+    <input type="submit" value="Search">
+  </form>
 </body>
-
-<script src="{{url_for('static', filename="js/jquery-1.4.4.min.js")}}"></script>
-
-<script>
-  //TODO: dont need jQuery for this...lol
-  $(document).ready(function() {
-    $('form').attr('action', '/websoc/search');
-  });
-</script>
 
 </html>

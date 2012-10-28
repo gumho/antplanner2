@@ -3,7 +3,12 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-  <div id="cal"></div>  
+  <div id="cal-wrapper">
+    <div id="cal-ctrl">
+      <button id="clear-cal-btn">Clear all</button>
+    </div>
+    <div id="cal"></div>
+  </div>
   <iframe src="{{url_for('websoc_search_form')}}" id="soc" frameborder="0"></iframe>
 {% endblock %}
 
@@ -20,7 +25,9 @@
       allowCalEventOverlap: true,
       overlapEventsSeparate: true,
       buttons: false,
-      height: function($calendar){ return $(window).height() - $('nav').outerHeight(); },
+      height: function($calendar){ 
+        return $(window).height() - $('#cal-ctrl').outerHeight(); 
+      },
       draggable : function(calEvent, element) { return false; },
       resizable : function(calEvent, element) { return false; },
       eventClick : function(calEvent, element) {
@@ -37,6 +44,7 @@
       data: function(start, end, callback) {
         if(localStorage.saved) {
           callback( JSON.parse(localStorage.saved) );
+          groupColorize();
         }
       }
     });
@@ -45,7 +53,7 @@
 
     $('#soc').load(function(){
       var $listingContext = $('.course-list', frames['soc'].document);
-      var $courseRow = $("tr[valign*='top']", $listingContext);
+      var $courseRow = $("tr[valign*='top']:not([bgcolor='#fff0ff'])", $listingContext);
 
         $courseRow.hover(
           function() {
@@ -58,8 +66,22 @@
 
         $courseRow.click(function() {
           var timeString = $(this).find('td').eq(LISTING_TIME_INDEX).html();
+          
+          // Ignore if course is "TBA"
+          if(timeString.indexOf('TBA') != -1) {
+            alert('Course is TBA');
+            return;
+          }
+
           var courseCode = $(this).find('td').eq(LISTING_CODE_INDEX).text();
 
+          // Ignore if course already added
+          if(isCourseAdded(courseCode)) {
+            alert('You have already added that course!');
+            return;
+          }
+
+          var courseName = $.trim( $(this).prevAll().find('.CourseTitle:last').html().split('<font')[0].replace(/&nbsp;/g, '') )
           var courseTimes = new CourseTimeStringParser(timeString)
 
           // Iterate through course times (a course may have different meeting times)
@@ -75,14 +97,40 @@
                 groupId: courseCode,
                 start: new Date(APP_YEAR, APP_MONTH, day, parsed.beginHour, parsed.beginMin),
                 end: new Date(APP_YEAR, APP_MONTH, day, parsed.endHour, parsed.endMin),
-                title: courseCode
+                title: courseName + '<br>(' + courseCode + ')'
               }
               $('#cal').weekCalendar("updateEvent", calEvent);
             }
-          }         
-          
+          } 
+
+          // Assign a color to the courses
+          var colorPair = getRandomColorPair();
+          $('.wc-cal-event').each(function(index, el) {
+            var c = $(el).data().calEvent
+            if( c.groupId.indexOf(courseCode) != -1 ) {
+              $(this).css('background-color', colorPair.color);
+              $(this).css('border', '1px solid ' + colorPair.borderColor);
+              $('.wc-time', this).css('background-color', colorPair.color);
+              $('.wc-time', this).css('border', '1px solid ' + colorPair.borderColor);
+            }
+          });
+
           localStorage.saved = JSON.stringify( $('#cal').weekCalendar('serializeEvents') );
         })
     });
+
+    $('#clear-cal-btn').click(function() {
+      $('#cal').weekCalendar('clear');
+    });
+
+
+    // $('#cal').toggle(function() {
+    //   $('#soc').animate({'width': '0%'}, {duration: 600, queue: false});
+    //   $('#cal').animate({'width': '100%'}, {duration: 600, queue:false});
+    // }, function() {
+    //   $('#cal').animate({'width': '50%'}, {duration: 600, queue:false});
+    //   $('#soc').animate({'width': '50%'}, {duration: 600, queue: false});
+    // });
+
   });
 {% endblock %}
