@@ -4,16 +4,21 @@
     <style type="text/css">
       body {
         margin: 5px 5px 0 5px;
+        font-family: sans-serif;
+        font-size: 14px;
       }
       a {
         color: black; 
         text-decoration: none;
       }
+      #header {
+        height: 20px;
+      }
       .banner-width {
         display: none;
       }
       input[type=submit] {
-        margin: 2px 0 7px 0;
+        margin: 0;
       }
     	a[href="/perl/WebSoc"], a[href="WebSoc"], input[value="Display Text Results"]{ 
     		display: none; 
@@ -21,12 +26,19 @@
       font[color="red"] {
         display: none;
       }
+      #inner-form {
+        margin: 5px 0 5px 0;
+      }
     </style>
 </head>
 <body>
   <form action="{{url_for('websoc_search_form')}}" method="post">
-    <input type="submit" value="Search">
-    {{form_content | safe}}
+    <div id="header">
+      <input type="submit" value="Search">
+    </div>
+    <div id="inner-form">
+      {{form_content | safe}}
+    </div>
     <input type="submit" value="Search">
   </form>
 </body>

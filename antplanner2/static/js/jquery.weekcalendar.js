@@ -293,7 +293,7 @@
         self._renderCalendar();
         self._loadCalEvents();
         self._resizeCalendar();
-        self._scrollToHour(self.options.date.getHours(), true);
+        //self._scrollToHour(self.options.date.getHours(), true);
 
         if (this.options.resizeEvent) {
           $(window).unbind(this.options.resizeEvent);

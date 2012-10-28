@@ -1,0 +1,13 @@
+#cal-wrapper {
+	width: 100%;
+}
+#ctrl button{
+	display: none;
+}
+#soc {
+	display: none;
+}
+
+.wc-scrollable-grid {
+	height: 1200px !important;
+}

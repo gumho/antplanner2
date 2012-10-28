@@ -4,7 +4,7 @@
 
 {% block content %}
   <div id="cal-wrapper">
-    <div id="cal-ctrl">
+    <div id="ctrl">
       <button id="clear-cal-btn">Clear all</button>
     </div>
     <div id="cal"></div>
@@ -26,7 +26,7 @@
       overlapEventsSeparate: true,
       buttons: false,
       height: function($calendar){ 
-        return $(window).height() - $('#cal-ctrl').outerHeight(); 
+        return $(window).height() - $('#ctrl').outerHeight(); 
       },
       draggable : function(calEvent, element) { return false; },
       resizable : function(calEvent, element) { return false; },
@@ -52,7 +52,7 @@
     $('#cal').weekCalendar('gotoWeek', new Date(APP_YEAR, APP_MONTH, APP_DAY));
 
     $('#soc').load(function(){
-      var $listingContext = $('.course-list', frames['soc'].document);
+      var $listingContext = $('.course-list', $('#soc').contents());
       var $courseRow = $("tr[valign*='top']:not([bgcolor='#fff0ff'])", $listingContext);
 
         $courseRow.hover(
