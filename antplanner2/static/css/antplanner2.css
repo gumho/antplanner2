@@ -15,15 +15,36 @@ a:hover { text-decoration: underline; }
 	float: left;
 }
 
-#ctrl {
-	height: 20px;
-	padding: 5px;
-	position: relative;
-}
+	#cal-upper {
+		height: 20px;
+		padding: 5px 0 5px 5px;
+	}
 
-	#clear-cal-btn {
+	#cal-upper ul#nav {
+		float: left;
+		padding: 0;
+		margin: 0;
+	}
+
+	#cal-upper ul#nav .nav-item-box {
 		position: absolute;
-		right: 0;
+		display: none;
+		width: 250px;
+		border: 1px solid #ccc;
+		padding: 20px;
+		background: white;
+		z-index: 9999;
+	}
+
+	#cal-upper ul#nav > li {
+		position: relative;
+		display: inline;
+		margin-right: 5px;
+		font-size: 14px;
+	}
+
+	#cal-upper button {
+		float: right;
 		margin: 0;
 	}
 

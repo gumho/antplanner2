@@ -4,8 +4,12 @@
 
 {% block content %}
   <div id="cal-wrapper">
-    <div id="ctrl">
-      <button id="clear-cal-btn">Clear all</button>
+    <div id="cal-upper">
+      <ul id="nav">
+        <li>ant<strong>planner</strong></li>
+        <li><a href="http://github.com/gumho/antplanner2/wiki/AntPlanner-FAQ">what do?</a></li>
+      </ul>
+      <button id="clear-cal-btn">Clear Calendar</button>
     </div>
     <div id="cal"></div>
   </div>
@@ -26,7 +30,7 @@
       overlapEventsSeparate: true,
       buttons: false,
       height: function($calendar){ 
-        return $(window).height() - $('#ctrl').outerHeight(); 
+        return $(window).height() - $('#cal-upper').outerHeight(); 
       },
       draggable : function(calEvent, element) { return false; },
       resizable : function(calEvent, element) { return false; },
@@ -122,7 +126,6 @@
     $('#clear-cal-btn').click(function() {
       $('#cal').weekCalendar('clear');
     });
-
 
     // $('#cal').toggle(function() {
     //   $('#soc').animate({'width': '0%'}, {duration: 600, queue: false});
