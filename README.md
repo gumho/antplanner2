@@ -31,6 +31,7 @@ Currently, the following features are in use. I'll need to investigate further a
 
 - native JSON.stringify()
 - HTML5 localStorage
+- CSS 3
 
 ## Known Issues
 
