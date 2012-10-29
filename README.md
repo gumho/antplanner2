@@ -39,11 +39,10 @@ Currently, the following features are in use. I'll need to investigate further a
 
 ## TODO
 
-- save/load
+- show/hide Sun and Sat
+- maximizable panes
+- server save/load
 - session management
 - social integration (facebook)
-- news page
-- changelog
-- printing
 
 
