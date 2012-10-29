@@ -8,11 +8,13 @@
       <div id="main-nav">
         <ul>
           <li><a href="#">antplanner</a></li>
+          <li style="position: absolute; left: -9999px"><h2>A better WebSOC for UCI</h2></li>
           <li><a href="http://github.com/gumho/antplanner2/wiki/AntPlanner-FAQ">what do?</a></li>
         </ul>
       </div>
       <div id="cal-ctrl">
         <button onclick="javascript:window.print()">Print</button>
+        <button id="full-cal-btn">Full Screen</button>
         <button id="clear-cal-btn">Clear Calendar</button>
       </div>
     </div>
@@ -132,13 +134,15 @@
       $('#cal').weekCalendar('clear');
     });
 
-    // $('#cal').toggle(function() {
-    //   $('#soc').animate({'width': '0%'}, {duration: 600, queue: false});
-    //   $('#cal').animate({'width': '100%'}, {duration: 600, queue:false});
-    // }, function() {
-    //   $('#cal').animate({'width': '50%'}, {duration: 600, queue:false});
-    //   $('#soc').animate({'width': '50%'}, {duration: 600, queue: false});
-    // });
+    $('#full-cal-btn').toggle(function() {
+      $('iframe').hide();
+      $('#left').animate({width: '100%'});
+      $(this).text('Half screen');
+    }, function() {
+      $('iframe').show()
+      $('#left').animate({width: '50%'});
+      $(this).text('Full Screen');
+    });
 
   });
 {% endblock %}
