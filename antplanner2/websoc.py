@@ -16,4 +16,12 @@ def get_listing(form_data):
         payload=encoded,
         method=urlfetch.POST,
         headers={'Content-Type': 'application/x-www-form-urlencoded'}).content
-    return unicode(BeautifulSoup(html).find('div', 'course-list').encode(formatter='html'))
+
+    listing = BeautifulSoup(html).find('div', 'course-list')
+    if listing:
+        return unicode(listing.encode(formatter='html'))
+    else:
+        # We come here if course-list was not found
+        return unicode(BeautifulSoup(html).encode(formatter='html'))
+
+
