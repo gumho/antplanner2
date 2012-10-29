@@ -39,6 +39,7 @@ Currently, the following features are in use. I'll need to investigate further a
 
 ## TODO
 
+- SEO
 - show/hide Sun and Sat
 - maximizable panes
 - server save/load
