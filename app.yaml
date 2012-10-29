@@ -1,5 +1,5 @@
-application: antplanner2
-version: 1
+application: antplanner
+version: 2-0-0b1
 runtime: python
 api_version: 1
 
