@@ -1,11 +1,16 @@
-application: antplanner
+application: antplanner-hrd
 version: 2-0-0b1
-runtime: python
+runtime: python27
 api_version: 1
+threadsafe: true
 
 handlers:
 - url: /static
   static_dir: antplanner2/static
 
 - url: .*
-  script: main.py
+  script: main.app
+
+libraries:
+- name: jinja2
+  version: latest
