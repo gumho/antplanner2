@@ -133,7 +133,7 @@ function getRandomColorPair() {
 
 function colorEvent(el, colorPair) {
 	$(el).css('background-color', colorPair.color);
-	$(el).css('border', '1px solid ' + colorPair.borderColor);
+	$(el).css('border', 'none');
 	$('.wc-time', el).css('background-color', colorPair.color);
 	$('.wc-time', el).css('border', '1px solid ' + colorPair.borderColor);
 }

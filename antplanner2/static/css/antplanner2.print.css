@@ -1,13 +1,15 @@
-#cal-wrapper {
+#left {
 	width: 100%;
 }
-#ctrl button{
-	display: none;
-}
-#soc {
+#upper, #soc {
 	display: none;
 }
 
 .wc-scrollable-grid {
 	height: 1200px !important;
+}
+
+.wc-cal-event {
+	font-size: 10px !important;
+	border: 1px solid black;
 }

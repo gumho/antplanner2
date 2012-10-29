@@ -1,3 +1,52 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* --- End Reset --- */
 html { height: 100%; }
 
 body {
@@ -7,46 +56,56 @@ body {
 	color: #333;
 }
 
-a { color: #666; text-decoration: none;}
-a:hover { text-decoration: underline; }
+a { color: #4183C4; text-decoration: none;}
 
-#cal-wrapper {
+#left {
 	width: 50%;
 	float: left;
 }
 
-	#cal-upper {
-		height: 20px;
-		padding: 5px 0 5px 5px;
-	}
+#upper {
+	height: 20px;
+	padding: 5px;
+}
 
-	#cal-upper ul#nav {
-		float: left;
-		padding: 0;
-		margin: 0;
-	}
+#upper #main-nav {
+	float: left;
+	padding: 0;
+	margin: 0;
+}
 
-	#cal-upper ul#nav .nav-item-box {
-		position: absolute;
-		display: none;
-		width: 250px;
-		border: 1px solid #ccc;
-		padding: 20px;
-		background: white;
-		z-index: 9999;
-	}
+#upper #main-nav ul {
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+}
 
-	#cal-upper ul#nav > li {
-		position: relative;
-		display: inline;
-		margin-right: 5px;
-		font-size: 14px;
-	}
+#upper #main-nav li {
+	display: inline;
+	vertical-align: middle;
+	margin-right: 5px;
+	font-size: 14px;
+	height: 20px;
+	line-height: 20px;
+}
 
-	#cal-upper button {
-		float: right;
-		margin: 0;
-	}
+#upper #main-nav li a{
+	border-radius: 4px;
+	background: #5CEBC6;
+	color: #ffffff;
+}
+
+#upper #main-nav li a:hover {
+	background: #FC64AE;
+}
+
+#upper #cal-ctrl {
+	float: right;
+}
+
+#upper button {
+	margin: 0 0 0 5px;
+}
 
 #soc {
 	height: 100%;
@@ -58,4 +117,5 @@ a:hover { text-decoration: underline; }
 
 .wc-cal-event {
 	font-size: 10px !important;
+	border: none;
 }

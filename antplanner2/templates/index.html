@@ -3,13 +3,18 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-  <div id="cal-wrapper">
-    <div id="cal-upper">
-      <ul id="nav">
-        <li>ant<strong>planner</strong></li>
-        <li><a href="http://github.com/gumho/antplanner2/wiki/AntPlanner-FAQ">what do?</a></li>
-      </ul>
-      <button id="clear-cal-btn">Clear Calendar</button>
+  <div id="left">
+    <div id="upper">
+      <div id="main-nav">
+        <ul>
+          <li><a href="#">antplanner</a></li>
+          <li><a href="http://github.com/gumho/antplanner2/wiki/AntPlanner-FAQ">what do?</a></li>
+        </ul>
+      </div>
+      <div id="cal-ctrl">
+        <button onclick="javascript:window.print()">Print</button>
+        <button id="clear-cal-btn">Clear Calendar</button>
+      </div>
     </div>
     <div id="cal"></div>
   </div>
@@ -30,7 +35,7 @@
       overlapEventsSeparate: true,
       buttons: false,
       height: function($calendar){ 
-        return $(window).height() - $('#cal-upper').outerHeight(); 
+        return $(window).height() - $('#upper').outerHeight(); 
       },
       draggable : function(calEvent, element) { return false; },
       resizable : function(calEvent, element) { return false; },
