@@ -48,16 +48,16 @@ table {
 
 /* --- End Reset --- */
 html { height: 100%; }
-
 body {
 	height: 100%;
-	font-family: helvetica;
+	font-family: verdana;
 	margin: 0;
 	color: #333;
 }
 
-a { color: #4183C4; text-decoration: none;}
-
+a { color: #668CD9; text-decoration: none;}
+a:hover { color: #36C; }
+strong { font-weight: bold; }
 #left {
 	width: 50%;
 	float: left;
@@ -73,38 +73,18 @@ a { color: #4183C4; text-decoration: none;}
 	padding: 0;
 	margin: 0;
 }
-
-#upper #main-nav ul {
-	display: inline-block;
-	padding: 0;
-	margin: 0;
-}
-
-#upper #main-nav li {
+#upper #main-nav h1,
+#upper #main-nav a {
 	display: inline;
 	vertical-align: middle;
-	margin-right: 5px;
-	font-size: 14px;
-	height: 20px;
-	line-height: 20px;
-}
-
-#upper #main-nav li a{
-	border-radius: 4px;
-	background: #5CEBC6;
-	color: #ffffff;
-}
-
-#upper #main-nav li a:hover {
-	background: #FC64AE;
 }
 
 #upper #cal-ctrl {
 	float: right;
 }
 
-#upper button {
-	margin: 0 0 0 5px;
+#upper #cal-ctrl a {
+	vertical-align: middle;
 }
 
 #soc {
