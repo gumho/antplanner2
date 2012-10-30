@@ -6,16 +6,15 @@
   <div id="left">
     <div id="upper">
       <div id="main-nav">
-        <ul>
-          <li><a href="#">antplanner</a></li>
-          <li style="position: absolute; left: -9999px"><h2>A better WebSOC for UCI</h2></li>
-          <li><a href="http://github.com/gumho/antplanner2/wiki/AntPlanner-FAQ">what do?</a></li>
+          <h1>ant<strong>planner</strong></h1>
+          <a href="http://github.com/gumho/antplanner2/wiki/AntPlanner-FAQ" title="Help &amp; FAQ"><i class="icon-question-sign icon-large"></i></a>
         </ul>
       </div>
       <div id="cal-ctrl">
-        <button onclick="javascript:window.print()">Print</button>
-        <button id="full-cal-btn">Full Screen</button>
-        <button id="clear-cal-btn">Clear Calendar</button>
+        <a href="#" onclick="javascript:print()" title="Print schedule"><i class="icon-print icon-large"></i></a>
+        <a href="#" id="save-btn" title="Save schedule"><i class="icon-save icon-large"></i></a>
+        <a href="#" id="clear-cal-btn" title="Clear calendar"><i class="icon-remove icon-large"></i></a>
+        <a href="#" id="resize-btn" title="Toggle fullscreen"><i class="icon-resize-full icon-large"></i></a>
       </div>
     </div>
     <div id="cal"></div>
@@ -134,14 +133,14 @@
       $('#cal').weekCalendar('clear');
     });
 
-    $('#full-cal-btn').toggle(function() {
+    $('#resize-btn').toggle(function() {
       $('iframe').hide();
       $('#left').animate({width: '100%'});
-      $(this).text('Half screen');
+      $('i', this).removeClass('icon-resize-full').addClass('icon-resize-small');
     }, function() {
       $('iframe').show()
       $('#left').animate({width: '50%'});
-      $(this).text('Full Screen');
+      $('i', this).removeClass('icon-resize-small').addClass('icon-resize-full');
     });
 
   });
