@@ -39,11 +39,10 @@ Currently, the following features are in use. I'll need to investigate further a
 
 ## TODO
 
+- cron for deleting stale schedules
 - SEO
 - show/hide Sun and Sat
 - maximizable panes
-- server save/load
-- session management
 - social integration (facebook)
 
 
