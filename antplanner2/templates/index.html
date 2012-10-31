@@ -1,181 +1,193 @@
-{% extends "layout.html" %}
-
-{% block title %}Home{% endblock %}
-
-{% block content %}
-  <div id="left">
-    <div id="upper">
-      <div id="main-nav">
-          <h1>ant<strong>planner</strong></h1>
-          <a href="http://github.com/gumho/antplanner2/wiki/AntPlanner-FAQ" title="Help &amp; FAQ"><i class="icon-question-sign icon-large"></i></a>
-        </ul>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Antplanner - A better WebSOC for UCI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href="{{url_for('static', filename="css/smoothness/jquery-ui-1.9.1.custom.min.css")}}">
+    <link rel="stylesheet" href="{{url_for('static', filename="css/font-awesome.css")}}">
+    <link rel="stylesheet" href="{{url_for('static', filename="css/jquery.weekcalendar.css")}}">
+    <link rel="stylesheet" href="{{url_for('static', filename="css/antplanner2.css")}}">
+    <link rel="stylesheet" href="{{url_for('static', filename="css/antplanner2.print.css")}}" media="print">
+    <!--[if IE 7]><link rel="stylesheet" href="{{url_for('static', filename="css/font-awesome-ie7.css")}}"><![endif]-->
+  </head>
+  <body>
+    <div id="left">
+      <div id="upper">
+        <div id="main-nav">
+            <h1>ant<strong>planner</strong></h1>
+            <a href="http://github.com/gumho/antplanner2/wiki/AntPlanner-FAQ" title="Help &amp; FAQ"><i class="icon-question-sign icon-large"></i></a>
+        </div>
+        <div id="cal-ctrl">
+          <a href="#print" onclick="javascript:print()" title="Print schedule"><i class="icon-print icon-large"></i></a>
+          <a href="#save" id="save-btn" title="Save schedule"><i class="icon-save icon-large"></i></a>
+          <a href="#load" id="load-btn" title="Load schedule"><i class="icon-folder-open icon-large"></i></a>
+          <a href="#" id="clear-cal-btn" title="Clear calendar"><i class="icon-remove icon-large"></i></a>
+          <a href="#" id="resize-btn" title="Toggle fullscreen"><i class="icon-resize-full icon-large"></i></a>
+        </div>
       </div>
-      <div id="cal-ctrl">
-        <a href="#print" onclick="javascript:print()" title="Print schedule"><i class="icon-print icon-large"></i></a>
-        <a href="#save" id="save-btn" title="Save schedule"><i class="icon-save icon-large"></i></a>
-        <a href="#load" id="load-btn" title="Load schedule"><i class="icon-folder-open icon-large"></i></a>
-        <a href="#" id="clear-cal-btn" title="Clear calendar"><i class="icon-remove icon-large"></i></a>
-        <a href="#" id="resize-btn" title="Toggle fullscreen"><i class="icon-resize-full icon-large"></i></a>
-      </div>
+      <div id="cal"></div>
     </div>
-    <div id="cal"></div>
-  </div>
-  <iframe src="{{url_for('websoc_search_form')}}" id="soc" frameborder="0"></iframe>
-{% endblock %}
+    <iframe src="{{url_for('websoc_search_form')}}" id="soc" frameborder="0"></iframe>
 
-{% block inline_scripts %}
-  $(document).ready(function() {
-    $('#cal').weekCalendar({
-      businessHours: {start: 6, end: 24, limitDisplay: true},
-      showHeader: false,
-      showColumnHeaderDate: false,
-      timeslotsPerHour: 3,
-      daysToShow:5,
-      readonly: true,
-      useShortDayNames: true,
-      allowCalEventOverlap: true,
-      overlapEventsSeparate: true,
-      buttons: false,
-      height: function($calendar){ 
-        return $(window).height() - $('#upper').outerHeight(); 
-      },
-      draggable : function(calEvent, element) { return false; },
-      resizable : function(calEvent, element) { return false; },
-      eventClick : function(calEvent, element) {
-        var delCode = calEvent.groupId; 
-        $('.wc-cal-event').each(function(index, el) {
-          var c = $(el).data().calEvent
-          if( c.groupId == delCode ) {
-            $('#cal').weekCalendar('removeEvent', c.id);
+    <script src="{{url_for('static', filename="js/jquery-1.8.2.min.js")}}"></script>
+    <script src="{{url_for('static', filename="js/jquery-ui-1.9.1.custom.min.js")}}"></script>
+    <script src="{{url_for('static', filename="js/jquery.weekcalendar.js")}}"></script>
+    <script src="{{url_for('static', filename="js/antplanner2.js")}}"></script>
+    <script>
+      $(document).ready(function() {
+        $('#cal').weekCalendar({
+          businessHours: {start: 6, end: 24, limitDisplay: true},
+          showHeader: false,
+          showColumnHeaderDate: false,
+          timeslotsPerHour: 3,
+          daysToShow:5,
+          readonly: true,
+          useShortDayNames: true,
+          allowCalEventOverlap: true,
+          overlapEventsSeparate: true,
+          buttons: false,
+          height: function($calendar){ 
+            return $(window).height() - $('#upper').outerHeight(); 
+          },
+          draggable : function(calEvent, element) { return false; },
+          resizable : function(calEvent, element) { return false; },
+          eventClick : function(calEvent, element) {
+            var delCode = calEvent.groupId; 
+            $('.wc-cal-event').each(function(index, el) {
+              var c = $(el).data().calEvent
+              if( c.groupId == delCode ) {
+                $('#cal').weekCalendar('removeEvent', c.id);
+              }
+            });
           }
         });
-      }
-    });
 
-    $('#cal').weekCalendar('gotoWeek', new Date(APP_YEAR, APP_MONTH, APP_DAY));
+        $('#cal').weekCalendar('gotoWeek', new Date(APP_YEAR, APP_MONTH, APP_DAY));
 
-    $('#soc').load(function(){
-      var $listingContext = $('.course-list', $('#soc').contents());
-      var $courseRow = $("tr[valign*='top']:not([bgcolor='#fff0ff'])", $listingContext);
+        $('#soc').load(function(){
+          var $listingContext = $('.course-list', $('#soc').contents());
+          var $courseRow = $("tr[valign*='top']:not([bgcolor='#fff0ff'])", $listingContext);
 
-        $courseRow.hover(
-          function() {
-            $(this).css({'color': '#ff0000', 'cursor': 'pointer'});
-          },
-          function() {
-            $(this).css({'color': '#000000', 'cursor': 'default'});
-          }
-        );
-
-        $courseRow.click(function() {
-          var timeString = $(this).find('td').eq(LISTING_TIME_INDEX).html();
-          
-          // Ignore if course is "TBA"
-          if(timeString.indexOf('TBA') != -1) {
-            alert('Course is TBA');
-            return;
-          }
-
-          var courseCode = $(this).find('td').eq(LISTING_CODE_INDEX).text();
-
-          // Ignore if course already added
-          if(isCourseAdded(courseCode)) {
-            alert('You have already added that course!');
-            return;
-          }
-
-          var courseName = $.trim( $(this).prevAll().find('.CourseTitle:last').html().split('<font')[0].replace(/&nbsp;/g, '') )
-          var courseTimes = new CourseTimeStringParser(timeString)
-
-          // Iterate through course times (a course may have different meeting times)
-          for(var i in courseTimes) {
-            var parsed = courseTimes[i];
-            $('#cal').weekCalendar('scrollToHour', parsed.beginHour, true);
-
-            for(var i in parsed.days) {
-              var day = parsed.days[i];
-
-              calEvent = {
-                id: S4(),
-                groupId: courseCode,
-                start: new Date(APP_YEAR, APP_MONTH, day, parsed.beginHour, parsed.beginMin),
-                end: new Date(APP_YEAR, APP_MONTH, day, parsed.endHour, parsed.endMin),
-                title: courseName + '<br>(' + courseCode + ')'
+            $courseRow.hover(
+              function() {
+                $(this).css({'color': '#ff0000', 'cursor': 'pointer'});
+              },
+              function() {
+                $(this).css({'color': '#000000', 'cursor': 'default'});
               }
-              $('#cal').weekCalendar("updateEvent", calEvent);
-            }
-          } 
+            );
 
-          // Assign a color to the courses
-          var colorPair = getRandomColorPair();
-          $('.wc-cal-event').each(function(index, el) {
-            var c = $(el).data().calEvent
-            if( c.groupId.indexOf(courseCode) != -1 ) {
-              $(this).css('background-color', colorPair.color);
-              $(this).css('border', '1px solid ' + colorPair.borderColor);
-              $('.wc-time', this).css('background-color', colorPair.color);
-              $('.wc-time', this).css('border', '1px solid ' + colorPair.borderColor);
+            $courseRow.click(function() {
+              var timeString = $(this).find('td').eq(LISTING_TIME_INDEX).html();
+              
+              // Ignore if course is "TBA"
+              if(timeString.indexOf('TBA') != -1) {
+                alert('Course is TBA');
+                return;
+              }
+
+              var courseCode = $(this).find('td').eq(LISTING_CODE_INDEX).text();
+
+              // Ignore if course already added
+              if(isCourseAdded(courseCode)) {
+                alert('You have already added that course!');
+                return;
+              }
+
+              var courseName = $.trim( $(this).prevAll().find('.CourseTitle:last').html().split('<font')[0].replace(/&nbsp;/g, '') )
+              var courseTimes = new CourseTimeStringParser(timeString)
+
+              // Iterate through course times (a course may have different meeting times)
+              for(var i in courseTimes) {
+                var parsed = courseTimes[i];
+                $('#cal').weekCalendar('scrollToHour', parsed.beginHour, true);
+
+                for(var i in parsed.days) {
+                  var day = parsed.days[i];
+
+                  calEvent = {
+                    id: S4(),
+                    groupId: courseCode,
+                    start: new Date(APP_YEAR, APP_MONTH, day, parsed.beginHour, parsed.beginMin),
+                    end: new Date(APP_YEAR, APP_MONTH, day, parsed.endHour, parsed.endMin),
+                    title: courseName + '<br>(' + courseCode + ')'
+                  }
+                  $('#cal').weekCalendar("updateEvent", calEvent);
+                }
+              } 
+
+              // Assign a color to the courses
+              var colorPair = getRandomColorPair();
+              $('.wc-cal-event').each(function(index, el) {
+                var c = $(el).data().calEvent
+                if( c.groupId.indexOf(courseCode) != -1 ) {
+                  $(this).css('background-color', colorPair.color);
+                  $(this).css('border', '1px solid ' + colorPair.borderColor);
+                  $('.wc-time', this).css('background-color', colorPair.color);
+                  $('.wc-time', this).css('border', '1px solid ' + colorPair.borderColor);
+                }
+              });
+            });
+        });
+
+        $('#save-btn').click(function() {
+          var calData  = JSON.stringify( $('#cal').weekCalendar('serializeEvents') );
+          var username = prompt('Please enter a username');
+
+          // Save to server
+          $.ajax({
+            url: "{{url_for('save_schedule')}}",
+            type: 'post',
+            data: {
+              username: username,
+              data: calData
+            },
+            success: function(data) {
+              if(data.success) {
+                alert('Schedule successfully saved!');
+                localStorage.username = username;
+              } 
+              else {
+                alert('Problem saving schedule');
+              }
             }
           });
         });
-    });
 
-    $('#save-btn').click(function() {
-      var calData  = JSON.stringify( $('#cal').weekCalendar('serializeEvents') );
-      var username = prompt('Please enter a username');
+        $('#load-btn').click(function() {
+          var ghost = localStorage.username ? localStorage.username : '';
+          var username = prompt('Please enter your username', ghost);
 
-      // Save to server
-      $.ajax({
-        url: "{{url_for('save_schedule')}}",
-        type: 'post',
-        data: {
-          username: username,
-          data: calData
-        },
-        success: function(data) {
-          if(data.success) {
-            alert('Schedule successfully saved!');
-            localStorage.username = username;
-          } 
-          else {
-            alert('Problem saving schedule');
-          }
-        }
+          $.ajax({
+            url: '/schedule/' + username + '/load',
+            success: function(data) {
+              if(data.success) {
+                $('#cal').weekCalendar('clear');
+                $('#cal').weekCalendar("loadEvents", JSON.parse(data.data));
+                groupColorize();
+              }
+              else {
+                alert('Problem loading schedule');
+              }
+            }
+          });
+        });
+
+        $('#clear-cal-btn').click(function() {
+          $('#cal').weekCalendar('clear');
+        });
+
+        $('#resize-btn').toggle(function() {
+          $('#soc').hide();
+          $('#left').animate({width: '100%'});
+          $('i', this).removeClass('icon-resize-full').addClass('icon-resize-small');
+        }, function() {
+          $('#soc').show()
+          $('#left').animate({width: '50%'});
+          $('i', this).removeClass('icon-resize-small').addClass('icon-resize-full');
+        });
+
       });
-    });
-
-    $('#load-btn').click(function() {
-      var ghost = localStorage.username ? localStorage.username : '';
-      var username = prompt('Please enter your username', ghost);
-
-      $.ajax({
-        url: '/schedule/' + username + '/load',
-        success: function(data) {
-          if(data.success) {
-            $('#cal').weekCalendar('clear');
-            $('#cal').weekCalendar("loadEvents", JSON.parse(data.data));
-            groupColorize();
-          }
-          else {
-            alert('Problem loading schedule');
-          }
-        }
-      });
-    });
-
-    $('#clear-cal-btn').click(function() {
-      $('#cal').weekCalendar('clear');
-    });
-
-    $('#resize-btn').toggle(function() {
-      $('iframe').hide();
-      $('#left').animate({width: '100%'});
-      $('i', this).removeClass('icon-resize-full').addClass('icon-resize-small');
-    }, function() {
-      $('iframe').show()
-      $('#left').animate({width: '50%'});
-      $('i', this).removeClass('icon-resize-small').addClass('icon-resize-full');
-    });
-
-  });
-{% endblock %}
+    </script>
+  </body>
