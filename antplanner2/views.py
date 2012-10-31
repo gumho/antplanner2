@@ -1,6 +1,7 @@
 from antplanner2 import app, websoc
 from flask import flash, render_template, request, jsonify
 from google.appengine.api import memcache
+from google.appengine.ext import db
 import logging
 
 logger = logging.getLogger(__name__)
@@ -27,6 +28,32 @@ def websoc_search():
         memcache.add(key, listing_html, 60 * 60 * 24)
     return render_template('websoc/listing.html', listing=listing_html)
 
+@app.route('/schedules/add', methods=['POST'])
+def save_schedule():
+    username = request.form.get('username')
+    data = request.form.get('data')
+    try:
+        Schedule(key_name=username, data=data).put()
+        return jsonify(success=True)
+    except:
+        return jsonify(success=False)
+
+@app.route('/schedule/<username>/load')
+def load_schedule(username):
+    schedule = Schedule.get_by_key_name(username)
+    if schedule:
+        return jsonify(success=True, data=schedule.data)
+    else:
+        return jsonify(success=False)
+
 @app.route('/test')
 def qunit():
     return render_template('test.html')
+
+#
+# models
+#
+class Schedule(db.Model):
+    data = db.TextProperty(required=True)
+    modified_at = db.DateProperty(required=True, auto_now=True)
+

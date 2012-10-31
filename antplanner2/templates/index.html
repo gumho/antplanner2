@@ -11,8 +11,9 @@
         </ul>
       </div>
       <div id="cal-ctrl">
-        <a href="#" onclick="javascript:print()" title="Print schedule"><i class="icon-print icon-large"></i></a>
-        <a href="#" id="save-btn" title="Save schedule"><i class="icon-save icon-large"></i></a>
+        <a href="#print" onclick="javascript:print()" title="Print schedule"><i class="icon-print icon-large"></i></a>
+        <a href="#save" id="save-btn" title="Save schedule"><i class="icon-save icon-large"></i></a>
+        <a href="#load" id="load-btn" title="Load schedule"><i class="icon-folder-open icon-large"></i></a>
         <a href="#" id="clear-cal-btn" title="Clear calendar"><i class="icon-remove icon-large"></i></a>
         <a href="#" id="resize-btn" title="Toggle fullscreen"><i class="icon-resize-full icon-large"></i></a>
       </div>
@@ -48,14 +49,6 @@
             $('#cal').weekCalendar('removeEvent', c.id);
           }
         });
-
-        localStorage.saved = JSON.stringify( $('#cal').weekCalendar('serializeEvents') );
-      },
-      data: function(start, end, callback) {
-        if(localStorage.saved) {
-          callback( JSON.parse(localStorage.saved) );
-          groupColorize();
-        }
       }
     });
 
@@ -124,9 +117,45 @@
               $('.wc-time', this).css('border', '1px solid ' + colorPair.borderColor);
             }
           });
+        });
+    });
 
-          localStorage.saved = JSON.stringify( $('#cal').weekCalendar('serializeEvents') );
-        })
+    $('#save-btn').click(function() {
+      var calData  = JSON.stringify( $('#cal').weekCalendar('serializeEvents') );
+      var username = prompt('Please enter a username');
+
+      // Save to server
+      $.ajax({
+        url: "{{url_for('save_schedule')}}",
+        type: 'post',
+        data: {
+          username: username,
+          data: calData
+        },
+        success: function(data) {
+          if(data.success) {
+            alert('Schedule successfully saved!');
+            localStorage.username = username;
+          } 
+          else {
+            alert('Problem saving schedule');
+          }
+        }
+      });
+    });
+
+    $('#load-btn').click(function() {
+      var ghost = localStorage.username ? localStorage.username : '';
+      var username = prompt('Please enter your username', ghost);
+
+      $.ajax({
+        url: '/schedule/' + username + '/load',
+        success: function(data) {
+          $('#cal').weekCalendar('clear');
+          $('#cal').weekCalendar("loadEvents", JSON.parse(data.data));
+          groupColorize();
+        }
+      });
     });
 
     $('#clear-cal-btn').click(function() {
