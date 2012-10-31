@@ -520,6 +520,9 @@
       scrollToHour: function(hour, animate) {
         this._scrollToHour(hour, animate);
       },
+      loadEvents: function(calEvents) {
+        this._renderEvents(calEvents, this.element.find('.wc-day-column-inner'))
+      },
       /*********************
         * private functions *
         *********************/
