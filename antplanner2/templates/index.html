@@ -151,9 +151,14 @@
       $.ajax({
         url: '/schedule/' + username + '/load',
         success: function(data) {
-          $('#cal').weekCalendar('clear');
-          $('#cal').weekCalendar("loadEvents", JSON.parse(data.data));
-          groupColorize();
+          if(data.success) {
+            $('#cal').weekCalendar('clear');
+            $('#cal').weekCalendar("loadEvents", JSON.parse(data.data));
+            groupColorize();
+          }
+          else {
+            alert('Problem loading schedule');
+          }
         }
       });
     });
