@@ -122,10 +122,7 @@
               $('.wc-cal-event').each(function(index, el) {
                 var c = $(el).data().calEvent
                 if( c.groupId.indexOf(courseCode) != -1 ) {
-                  $(this).css('background-color', colorPair.color);
-                  $(this).css('border', '1px solid ' + colorPair.borderColor);
-                  $('.wc-time', this).css('background-color', colorPair.color);
-                  $('.wc-time', this).css('border', '1px solid ' + colorPair.borderColor);
+                  colorEvent(el, colorPair);
                 }
               });
             });
@@ -133,7 +130,17 @@
 
         $('#save-btn').click(function() {
           var calData  = JSON.stringify( $('#cal').weekCalendar('serializeEvents') );
-          var username = prompt('Please enter a username');
+          var username = prompt('Please enter a unique username (e.g. Student ID): ');
+
+          // Validation
+          if(username == null) {
+            return;
+          }
+
+          if(username.length < 5) {
+            alert('Username must be at least 5 characters.')
+            return;
+          }
 
           // Save to server
           $.ajax({
@@ -159,6 +166,10 @@
           var ghost = localStorage.username ? localStorage.username : '';
           var username = prompt('Please enter your username', ghost);
 
+          if(username == null) {
+            return;
+          }
+
           $.ajax({
             url: '/schedule/' + username + '/load',
             success: function(data) {
@@ -166,6 +177,7 @@
                 $('#cal').weekCalendar('clear');
                 $('#cal').weekCalendar("loadEvents", JSON.parse(data.data));
                 groupColorize();
+                alert('Schedule successfully loaded!');
               }
               else {
                 alert('Problem loading schedule');
