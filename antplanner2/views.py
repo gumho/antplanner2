@@ -10,7 +10,7 @@ dev_mode = 'SERVER_SOFTWARE' in os.environ and os.environ['SERVER_SOFTWARE'].sta
 
 @app.route('/')
 def index():
-    return render_template('index.html', dev_mode=dev_mode)
+    return render_template('index.html')
 
 @app.route('/websoc/search', methods=['GET'])
 def websoc_search_form():
@@ -53,7 +53,12 @@ def qunit():
     return render_template('test.html')
 
 #
-# models
+# Jinja2 globals
+#
+app.jinja_env.globals['dev_mode'] = dev_mode
+
+#
+# Models
 #
 class Schedule(db.Model):
     data = db.TextProperty(required=True)
