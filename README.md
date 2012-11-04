@@ -23,6 +23,20 @@ These instructions are going to be a bit esoteric for now. Bear with me until th
 2. Clone this repo (git clone)
 3. Load the app into the GoogleAppEngineLauncher and hit 'Run'
 
+## Running the Tests
+
+Believe it or not, AntPlanner has tests. 
+
+Run the Javascript tests by running the application and navigating to:
+
+	http://<your-server>/test
+
+Run the Integration tests with the runtests.py script available in the project root:
+
+	runtests.py SDK_PATH tests
+
+On Mac OS X, the SDK_PATH is /usr/local/google_appengine by default (if you had the symlinks installed). 
+
 ## Compatibility
 
 I'm not totally set on this yet. All I know now is that I don't plan on supporting IE7 or older.
@@ -39,6 +53,7 @@ Currently, the following features are in use. I'll need to investigate further a
 
 ## TODO
 
+- error handling
 - cron for deleting stale schedules
 - SEO
 - show/hide Sun and Sat
