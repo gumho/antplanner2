@@ -3,12 +3,14 @@ from flask import flash, render_template, request, jsonify
 from google.appengine.api import memcache
 from google.appengine.ext import db
 import logging
+import os
 
 logger = logging.getLogger(__name__)
+dev_mode = 'SERVER_SOFTWARE' in os.environ and os.environ['SERVER_SOFTWARE'].startswith('Development')
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', dev_mode=dev_mode)
 
 @app.route('/websoc/search', methods=['GET'])
 def websoc_search_form():
