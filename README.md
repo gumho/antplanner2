@@ -53,11 +53,18 @@ Currently, the following features are in use. I'll need to investigate further a
 
 ## TODO
 
+- performance optimization
+	- log searches to improve memcache hit ratios
+	- defer html processing to client-side
+	- hosted js libraries
+- descriptive error messages when cant save/load course
+- limit # of courses that can be saved
 - error handling
 - cron for deleting stale schedules
 - SEO
 - show/hide Sun and Sat
 - maximizable panes
 - social integration (facebook)
+
 
 
