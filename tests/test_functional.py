@@ -1,5 +1,6 @@
 import main
 import unittest
+from google.appengine.api import memcache
 from google.appengine.ext import testbed
 
 class AntPlannerTestCase(unittest.TestCase):
@@ -25,6 +26,23 @@ class AntPlannerTestCase(unittest.TestCase):
         rv = self.app.get('/websoc/search')
         self.assertIn('AntPlanner - Search', rv.data)
         self.assertIn('Chemistry', rv.data)
+
+    def test_search_page_cache(self):
+        rv = self.app.get('/websoc/search')
+        num_items = memcache.get_stats()['items']
+        self.assertEqual(num_items, 1)
+
+    def test_listing_page(self):
+        pass
+
+    def test_listing_page_cache(self):
+        pass
+        
+    def test_save_schedule(self):
+        pass
+
+    def test_load_schedule(self):
+        pass
 
 if __name__ == '__main__':
     unittest.main()
