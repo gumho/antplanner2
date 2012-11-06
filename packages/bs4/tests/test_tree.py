@@ -886,20 +886,20 @@ class TestTreeModification(SoupTest):
         self.assertEqual(
             soup.decode(), self.document_for("QUUX<b>bar</b><a>foo</a>BAZ"))
 
-    def test_insert_after_raises_valueerror_if_after_has_no_meaning(self):
+    def test_insert_after_raises_exception_if_after_has_no_meaning(self):
         soup = self.soup("")
         tag = soup.new_tag("a")
         string = soup.new_string("")
         self.assertRaises(ValueError, string.insert_after, tag)
-        self.assertRaises(ValueError, soup.insert_after, tag)
+        self.assertRaises(NotImplementedError, soup.insert_after, tag)
         self.assertRaises(ValueError, tag.insert_after, tag)
 
-    def test_insert_before_raises_valueerror_if_before_has_no_meaning(self):
+    def test_insert_before_raises_notimplementederror_if_before_has_no_meaning(self):
         soup = self.soup("")
         tag = soup.new_tag("a")
         string = soup.new_string("")
         self.assertRaises(ValueError, string.insert_before, tag)
-        self.assertRaises(ValueError, soup.insert_before, tag)
+        self.assertRaises(NotImplementedError, soup.insert_before, tag)
         self.assertRaises(ValueError, tag.insert_before, tag)
 
     def test_replace_with(self):
