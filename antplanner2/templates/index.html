@@ -142,7 +142,9 @@
 
         $('#save-btn').click(function() {
           var calData  = JSON.stringify( $('#cal').weekCalendar('serializeEvents') );
-          var username = prompt('Please enter a unique username (e.g. Student ID): ');
+
+          var defaultName = localStorage.username ? localStorage.username : '';
+          var username = prompt('Please enter a unique username (e.g. Student ID): ', defaultName);
 
           // Validation
           if(username == null) {
@@ -175,8 +177,8 @@
         });
 
         $('#load-btn').click(function() {
-          var ghost = localStorage.username ? localStorage.username : '';
-          var username = prompt('Please enter your username', ghost);
+          var defaultName = localStorage.username ? localStorage.username : '';
+          var username = prompt('Please enter your username', defaultName);
 
           if(username == null) {
             return;
