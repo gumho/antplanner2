@@ -104,3 +104,21 @@ strong { font-weight: bold; }
 	font-size: 10px !important;
 	border: none;
 }
+
+@media print {
+	#left {
+		width: 100%;
+	}
+	#upper, #soc {
+		display: none;
+	}
+
+	.wc-scrollable-grid {
+		height: 1200px !important;
+	}
+
+	.wc-cal-event {
+		font-size: 10px !important;
+		border: 1px solid black;
+	}
+}
