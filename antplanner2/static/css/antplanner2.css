@@ -79,6 +79,11 @@ strong { font-weight: bold; }
 	vertical-align: middle;
 }
 
+#upper #main-nav h1 sup {
+	font-size:xx-small; 
+	vertical-align:top;
+}
+
 #upper #cal-ctrl {
 	float: right;
 }
