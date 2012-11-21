@@ -44,8 +44,9 @@ def save_schedule():
     except:
         return jsonify(success=False)
 
-@app.route('/schedule/<username>/load')
-def load_schedule(username):
+@app.route('/schedule/load')
+def load_schedule():
+    username = request.args.get('username')
     schedule = Schedule.get_by_key_name(username)
     if schedule:
         return jsonify(success=True, data=schedule.data)

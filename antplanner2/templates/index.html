@@ -183,7 +183,8 @@
           }
 
           $.ajax({
-            url: '/schedule/' + username + '/load',
+            url: '/schedule/load',
+            data: { username: username },
             success: function(data) {
               if(data.success) {
                 $('#cal').weekCalendar('clear');
