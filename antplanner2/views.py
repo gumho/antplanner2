@@ -13,7 +13,7 @@ def index():
     index_html = memcache.get('index')
     if not index_html:
         index_html = render_template('index.html')
-        memcache.add('index', index_html, 60 * 60 * 48)
+        memcache.add('index', index_html, 60 * 60 * 24)
     return index_html
 
 @app.route('/websoc/search', methods=['GET'])
