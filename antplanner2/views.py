@@ -10,7 +10,11 @@ dev_mode = 'SERVER_SOFTWARE' in os.environ and os.environ['SERVER_SOFTWARE'].sta
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    index_html = memcache.get('index')
+    if not index_html:
+        index_html = render_template('index.html')
+        memcache.add('index', index_html, 60 * 60 * 48)
+    return index_html
 
 @app.route('/websoc/search', methods=['GET'])
 def websoc_search_form():
