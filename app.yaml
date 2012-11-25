@@ -9,6 +9,10 @@ handlers:
   static_files: antplanner2/static/img/favicon.ico
   upload: antplanner2/static/img/favicon.ico
 
+- url: /robots.txt
+  static_files: antplanner2/static/robots.txt
+  upload: antplanner2/static/robots.txt
+
 - url: /static
   static_dir: antplanner2/static
 
