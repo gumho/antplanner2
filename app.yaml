@@ -5,6 +5,10 @@ api_version: 1
 threadsafe: true
 
 handlers:
+- url: /favicon.ico
+  static_files: antplanner2/static/img/favicon.ico
+  upload: antplanner2/static/img/favicon.ico
+
 - url: /static
   static_dir: antplanner2/static
 
