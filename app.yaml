@@ -1,5 +1,5 @@
 application: antplanner-hrd
-version: 2-0-0b3
+version: 2-0-0b4
 runtime: python27
 api_version: 1
 threadsafe: true
