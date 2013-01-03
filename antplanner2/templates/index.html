@@ -77,10 +77,11 @@
 
         $('#cal').weekCalendar('gotoWeek', new Date(APP_YEAR, APP_MONTH, APP_DAY));
 
-        $('#soc').load(function(){
+        $('#soc').bind('load', function(){
           var $listingContext = $('.course-list', $('#soc').contents());
           var $courseRow = $("tr[valign*='top']:not([bgcolor='#fff0ff'])", $listingContext);
 
+            // FIXME: hover() deprecated
             $courseRow.hover(
               function() {
                 $(this).css({'color': '#ff0000', 'cursor': 'pointer'});
@@ -90,7 +91,7 @@
               }
             );
 
-            $courseRow.click(function() {
+            $courseRow.on('click', function() {
               var timeString = $(this).find('td').eq(LISTING_TIME_INDEX).html();
               
               // Ignore if course is "TBA"
@@ -140,7 +141,7 @@
             });
         });
 
-        $('#save-btn').click(function() {
+        $('#save-btn').on('click', function() {
           var calData  = JSON.stringify( $('#cal').weekCalendar('serializeEvents') );
 
           var defaultName = localStorage.username ? localStorage.username : '';
@@ -176,7 +177,7 @@
           });
         });
 
-        $('#load-btn').click(function() {
+        $('#load-btn').on('click', function() {
           var defaultName = localStorage.username ? localStorage.username : '';
           var username = prompt('Please enter your username', defaultName);
 
@@ -201,10 +202,11 @@
           });
         });
 
-        $('#clear-cal-btn').click(function() {
+        $('#clear-cal-btn').on('click', function() {
           $('#cal').weekCalendar('clear');
         });
 
+        // TODO: toggle() deprecated
         $('#resize-btn').toggle(function() {
           $('#soc').hide();
           $('#left').animate({width: '100%'});
