@@ -7,7 +7,7 @@ $(document).ready(function() {
         // Check to see if it's similar to an instructor's name:
         //     LASTNAME, F.
         //     SMITH, J.
-        if (elementText.contains(',') && elementText.contains('.')) {
+        if (elementText.indexOf(',') !== -1 && elementText.indexOf('.') !== -1) {
             var instructorNames = element.html().split('<br>');
             var instructorLinks = [];
             for (i = 0; i < instructorNames.length; i++) {
