@@ -29,7 +29,7 @@ $(document).ready(function() {
     });
 
     // Stop propagation from reaching the parent (the click handler for the course row)
-    $("a.instructor-link").click(function(e) {
+    $(".course-list td a").click(function(e) {
         e.stopPropagation();
     });
 });
