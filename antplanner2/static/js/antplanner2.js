@@ -110,8 +110,6 @@ function parseRoomString(roomString) {
     // This will match non-markup text that is followed by the opening of a tag,
     // or with the ending of the string
     var regex = /(\w|\s)+(?=<|$)/g;
-
-    var rooms = [];
     var info = roomString.match(regex);
 
     return info;
