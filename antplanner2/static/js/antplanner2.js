@@ -102,6 +102,21 @@ function CourseTimeStringParser(courseString) {
 	return courseTimes;
 }
 
+function parseRoomString(roomString) {
+    // Accepts an html room string (there may or may not be an a tag for any room)
+    // Example: <a href="http://www.classrooms.uci.edu/GAC/HH112.html" target="_blank">HH 112</a><br>HH 112
+    roomString = roomString.trim();
+
+    // This will match non-markup text that is followed by the opening of a tag,
+    // or with the ending of the string
+    var regex = /(\w|\s)+(?=<|$)/g;
+
+    var rooms = [];
+    var info = roomString.match(regex);
+
+    return info;
+}
+
 function getRandomColorPair() {
 		var palette = [
 			{color: '#C4A883', borderColor: '#B08B59'},

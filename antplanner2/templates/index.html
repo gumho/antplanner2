@@ -110,11 +110,20 @@
 
               var courseName = $.trim( $(this).prevAll().find('.CourseTitle:last').html().split('<font')[0].replace(/&nbsp;/g, '') )
               var courseTimes = new CourseTimeStringParser(timeString)
+              var roomString = $(this).find('td').eq(LISTING_ROOM_INDEX).html();
+              var rooms = parseRoomString(roomString);
 
               // Iterate through course times (a course may have different meeting times)
               for(var i in courseTimes) {
                 var parsed = courseTimes[i];
                 $('#cal').weekCalendar('scrollToHour', parsed.beginHour, true);
+
+                if (rooms && i in rooms && rooms[i].length > 0) {
+                    var room = rooms[i];
+                } else {
+                    // Is there a possibility that there is only one room listed for all times (in the case of multiple times)?
+                    var room = "TBA";
+                }
 
                 for(var i in parsed.days) {
                   var day = parsed.days[i];
@@ -124,7 +133,7 @@
                     groupId: courseCode,
                     start: new Date(APP_YEAR, APP_MONTH, day, parsed.beginHour, parsed.beginMin),
                     end: new Date(APP_YEAR, APP_MONTH, day, parsed.endHour, parsed.endMin),
-                    title: courseName + '<br>(' + courseCode + ')'
+                    title: courseName + ' at ' + room + '<br>(' + courseCode + ')'
                   }
                   $('#cal').weekCalendar("updateEvent", calEvent);
                 }
