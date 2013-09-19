@@ -118,7 +118,7 @@
                 var parsed = courseTimes[i];
                 $('#cal').weekCalendar('scrollToHour', parsed.beginHour, true);
 
-                if (rooms && i in rooms && rooms[i].length > 0) {
+                if (i in rooms && rooms[i].length > 0) {
                     var room = rooms[i];
                 } else {
                     // Is there a possibility that there is only one room listed for all times (in the case of multiple times)?

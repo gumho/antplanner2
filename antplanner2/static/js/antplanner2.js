@@ -105,12 +105,13 @@ function CourseTimeStringParser(courseString) {
 function parseRoomString(roomString) {
     // Accepts an html room string (there may or may not be an a tag for any room)
     // Example: <a href="http://www.classrooms.uci.edu/GAC/HH112.html" target="_blank">HH 112</a><br>HH 112
+    // Returns an array of rooms. If there are no matches, an empty array is returned.
     roomString = roomString.trim();
 
     // This will match non-markup text that is followed by the opening of a tag,
     // or with the ending of the string
     var regex = /(\w|\s)+(?=<|$)/g;
-    var info = roomString.match(regex);
+    var info = roomString.match(regex) || [];
 
     return info;
 }
