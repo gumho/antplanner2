@@ -157,6 +157,29 @@
   	    assert.equal(parsed.beginHour, 22, 'begin hour');
   	    assert.equal(parsed.endHour, 22, 'end hour');
   	});
+
+    module( "Course Room String Parser")
+
+    test( "0 rooms", function( assert ) {
+        var roomString = '<br>'
+        var parsed = parseRoomString(roomString);
+        assert.equal(parsed.length, 0, 'length of array');
+    });
+
+    test( "1 room", function( assert ) {
+        var roomString = '<a href="http://www.classrooms.uci.edu/GAC/ICS259.html" target="_blank">ICS 259</a>'
+        var parsed = parseRoomString(roomString);
+        assert.equal(parsed.length, 1, 'length of array');
+        assert.equal(parsed[0], 'ICS 259', 'room 1 value');
+    });
+
+    test( "2 rooms", function( assert ) {
+        var roomString = '<a href="http://www.classrooms.uci.edu/GAC/ICS259.html" target="_blank">ICS 259</a><br>TBA'
+        var parsed = parseRoomString(roomString);
+        assert.equal(parsed.length, 2, 'length of array');
+        assert.equal(parsed[0], 'ICS 259', 'room 1 value');
+        assert.equal(parsed[1], 'TBA', 'room 2 value');
+    });
   </script>
 </body>
 </html>
