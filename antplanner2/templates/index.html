@@ -189,7 +189,7 @@
           var defaultName = localStorage.username ? localStorage.username : '';
           var username = prompt('Please enter your username', defaultName);
 
-          if(username == null) {
+          if(username == '') {
             return;
           }
 
