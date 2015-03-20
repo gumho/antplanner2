@@ -20,13 +20,14 @@ There are a million other reasons but most importantly, this rewrite should bene
 
 These instructions are going to be a bit esoteric for now. Bear with me until things are sorted out.
 
-1. Download and install the Google AppEngine Python SDK
-2. Clone this repo (git clone)
-3. Load the app into the GoogleAppEngineLauncher and hit 'Run'
+1. Download and install the [Google AppEngine Python SDK](https://cloud.google.com/appengine/downloads)
+2. git clone http://github.com/gumho/antplanner2
+3. cd antplanner2
+4. dev_appserver.py .
 
 ## Running the Tests
 
-Believe it or not, AntPlanner has tests. 
+Believe it or not, AntPlanner has tests (coverage is another story...).
 
 Run the Javascript tests by running the application and navigating to:
 
@@ -50,21 +51,6 @@ Currently, the following features are in use. I'll need to investigate further a
 
 ## Known Issues
 
-- Can't display Sunday and Saturday courses
-
-## TODO
-
-- courseManager object
-- performance optimization (outgoing bandwidth and frontend hours)
-	- log searches to improve memcache hit ratios
-	- defer html processing to client-side
-- descriptive error messages when cant save/load course
-- limit # of courses that can be saved
-- more error handling
-- cron for deleting stale schedules
-- SEO
-- show/hide Sun and Sat
-- social integration?
-
+(See [Issues page](https://github.com/gumho/antplanner2/issues/) on Github project)
 
 
