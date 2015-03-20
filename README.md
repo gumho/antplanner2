@@ -1,4 +1,5 @@
 # Antplanner2
+[![Build Status](https://travis-ci.org/gumho/antplanner2.svg?branch=master)](https://travis-ci.org/gumho/antplanner2)
 
 by Ryan Hsu
 
