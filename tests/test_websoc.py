@@ -1,9 +1,7 @@
 import unittest
-import optparse
-import sys
 from google.appengine.ext import testbed
-from google.appengine.api import urlfetch
 from antplanner2 import websoc
+
 
 class WebSoc_Test(unittest.TestCase):
     def setUp(self):
@@ -15,8 +13,8 @@ class WebSoc_Test(unittest.TestCase):
         self.testbed.deactivate()
 
     def test_search_page(self):
-		html = websoc.get_search()
-		self.assertIn('Display Web Results', html)
+        html = websoc.get_search()
+        self.assertIn('Display Web Results', html)
 
 if __name__ == '__main__':
     unittest.main()
