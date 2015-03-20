@@ -21,3 +21,6 @@ libraries:
 
 - name: lxml
   version: latest
+
+env_variables:
+  USE_MEMCACHE: true
