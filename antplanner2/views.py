@@ -5,7 +5,7 @@ from google.appengine.ext import db
 import logging
 from os import environ as env
 
-logger = logging.getLogger(__name__)
+LOG = logging.getLogger(__name__)
 dev_mode = env.get('SERVER_SOFTWARE', '').startswith('Development')
 use_memcache = env['USE_MEMCACHE'].lower() == 'true'
 

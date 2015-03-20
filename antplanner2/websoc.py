@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import urllib
 import logging
 
-logger = logging.getLogger(__name__)
+LOG = logging.getLogger(__name__)
 
 
 def get_search():
