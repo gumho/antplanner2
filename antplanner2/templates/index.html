@@ -217,9 +217,11 @@
         $('#resize-btn').toggle(function() {
           $('#cal').animate({width: '200%'});
           $(this).addClass('active');
+          $('#soc').hide();
         }, function() {
           $('#cal').animate({width: '100%'});
           $(this).removeClass('active');
+          $('#soc').show();
         });
       });
     </script>
