@@ -16,16 +16,16 @@ body {
 	padding: 5px;
 }
 
+#upper h1 {
+	line-height: 20px;
+}
+
 #upper #main-nav {
 	float: left;
 }
 
 #upper #cal-ctrl {
 	float: right;
-}
-
-#upper #cal-ctrl a {
-	vertical-align: middle;
 }
 
 .btn {
