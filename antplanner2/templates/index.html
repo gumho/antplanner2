@@ -216,8 +216,10 @@
         // TODO: toggle() deprecated
         $('#resize-btn').toggle(function() {
           $('#cal').animate({width: '200%'});
+          $(this).addClass('active');
         }, function() {
           $('#cal').animate({width: '100%'});
+          $(this).removeClass('active');
         });
       });
     </script>
