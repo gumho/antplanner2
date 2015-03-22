@@ -55,9 +55,6 @@ body {
 	color: #333;
 }
 
-a { color: #668CD9; text-decoration: none;}
-a:hover { color: #36C; }
-strong { font-weight: bold; }
 #left {
 	width: 50%;
 	float: left;
@@ -70,18 +67,6 @@ strong { font-weight: bold; }
 
 #upper #main-nav {
 	float: left;
-	padding: 0;
-	margin: 0;
-}
-#upper #main-nav h1,
-#upper #main-nav a {
-	display: inline;
-	vertical-align: middle;
-}
-
-#upper #main-nav h1 sup {
-	font-size:xx-small; 
-	vertical-align:top;
 }
 
 #upper #cal-ctrl {
@@ -91,6 +76,22 @@ strong { font-weight: bold; }
 #upper #cal-ctrl a {
 	vertical-align: middle;
 }
+
+.btn {
+	border: 1px solid transparent;
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.btn:hover {
+	background-color: #e6e6e6;
+	border-color: #adadad;
+}
+
+
 
 #soc {
 	height: 100%;

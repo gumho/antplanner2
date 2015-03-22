@@ -5,10 +5,8 @@
     <title>Antplanner - A better WebSOC for UCI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css">
     <link rel="stylesheet" href="{{url_for('static', filename="css/jquery.weekcalendar.css")}}">
     <link rel="stylesheet" href="{{url_for('static', filename="css/antplanner2.css")}}">
-    <!--[if IE 7]><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome-ie7.css"><![endif]-->
     {% if not dev_mode %}
       <script type="text/javascript">
         var _gaq = _gaq || [];
@@ -30,11 +28,10 @@
             <h1>Antplanner</h1>
         </div>
         <div id="cal-ctrl">
-          <a href="#print" onclick="javascript:print()" title="Print schedule"><i class="icon-print icon-large"></i></a>
-          <a href="#save" id="save-btn" title="Save schedule"><i class="icon-save icon-large"></i></a>
-          <a href="#load" id="load-btn" title="Load schedule"><i class="icon-folder-open icon-large"></i></a>
-          <a href="#" id="clear-cal-btn" title="Clear calendar"><i class="icon-remove icon-large"></i></a>
-          <a href="#" id="resize-btn" title="Toggle fullscreen"><i class="icon-resize-full icon-large"></i></a>
+          <button type="button" class="btn" onclick="javascript:print()">Print</button>
+          <button type="button" id="save-btn" class="btn" onclick="javascript:void(0)">Save</button>
+          <button type="button" id="load-btn" class="btn" onclick="javascript:void(0)">Load</button>
+          <button type="button" id="clear-cal-btn" class="btn" onclick="javascript:void(0)">Clear</button>
         </div>
       </div>
       <div id="cal"></div>
