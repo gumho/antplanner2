@@ -1,0 +1,87 @@
+html { height: 100%; }
+body {
+	height: 100%;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin: 0;
+	color: #333;
+}
+
+#left {
+	width: 50%;
+	float: left;
+}
+
+#upper {
+	height: 20px;
+	padding: 5px;
+}
+
+#upper #main-nav {
+	float: left;
+}
+
+#upper #cal-ctrl {
+	float: right;
+}
+
+#upper #cal-ctrl a {
+	vertical-align: middle;
+}
+
+.btn {
+	border: 1px solid transparent;
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.btn:hover {
+	background-color: #e6e6e6;
+	border-color: #adadad;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+.btn-primary:hover {
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+#soc {
+	height: 100%;
+	width: 50%;
+	float: left;
+}
+
+/* weekly calendar overrides */
+.wc-header {
+	border: none;
+}
+.wc-cal-event {
+	font-size: 10px !important;
+	border: none;
+}
+
+@media print {
+	#left {
+		width: 100%;
+	}
+	#upper, #soc {
+		display: none;
+	}
+
+	.wc-scrollable-grid {
+		height: 1200px !important;
+	}
+
+	.wc-cal-event {
+		font-size: 10px !important;
+		border: 1px solid black;
+	}
+}

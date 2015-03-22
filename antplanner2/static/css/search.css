@@ -1,0 +1,24 @@
+body {
+  font-size: 11px;
+}
+a {
+  color: #333; 
+  text-decoration: none;
+}
+
+.search-btn {
+  margin: 5px;
+}
+
+.banner-width {
+  display: none;
+}
+
+/* Gets rid of asterisks */
+font[color="red"] {
+  display: none;
+}
+
+table tr td:nth-child(even) {
+  padding: 5px;
+}

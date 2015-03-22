@@ -1,0 +1,19 @@
+body {
+  font-size: 13px;
+}
+
+header {
+  padding: 5px;
+}
+.dept-title {
+  background: #eee;
+  font-weight: bold;
+}
+.course-list tr td, .course-list tr th {
+  padding: 5px;
+}
+.college-title, .college-comment, .dept-comment, .ccode-range-comment,
+#contact-footer, .title-bar, #reg-nav-bar, #contact-date, #RegBannerMain,
+#reg-banner-container, .white-bar, .white-bar-thick {
+  display: none;
+}

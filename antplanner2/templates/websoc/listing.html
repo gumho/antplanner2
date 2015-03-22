@@ -1,77 +1,14 @@
 <html>
 <head>
   <title>AntPlanner - Listing</title>
-    <style type="text/css">
-      /* http://meyerweb.com/eric/tools/css/reset/ 
-         v2.0 | 20110126
-         License: none (public domain)
-      */
-      html, body, div, span, applet, object, iframe,
-      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-      a, abbr, acronym, address, big, cite, code,
-      del, dfn, em, img, ins, kbd, q, s, samp,
-      small, strike, strong, sub, sup, tt, var,
-      b, u, i, center,
-      dl, dt, dd, ol, ul, li,
-      fieldset, form, label, legend,
-      table, caption, tbody, tfoot, thead, tr, th, td,
-      article, aside, canvas, details, embed, 
-      figure, figcaption, footer, header, hgroup, 
-      menu, nav, output, ruby, section, summary,
-      time, mark, audio, video {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-size: 100%;
-        font: inherit;
-        vertical-align: baseline;
-      }
-      /* HTML5 display-role reset for older browsers */
-      article, aside, details, figcaption, figure, 
-      footer, header, hgroup, menu, nav, section {
-        display: block;
-      }
-
-      body {
-        padding: 5px;
-        line-height: 1;
-      }
-      ol, ul {
-        list-style: none;
-      }
-      blockquote, q {
-        quotes: none;
-      }
-      blockquote:before, blockquote:after,
-      q:before, q:after {
-        content: '';
-        content: none;
-      }
-      table {
-        border-collapse: collapse;
-        border-spacing: 0;
-      }
-
-      /* --- End Reset --- */
-      body {
-        font-size: 13px;
-        font-family: verdana;
-      }
-      .dept-title {
-        background: #eee;
-        font-weight: bold;
-      }
-      .course-list tr td, .course-list tr th {
-        padding: 5px;
-      }
-      .college-title, .college-comment, .dept-comment, .ccode-range-comment, #contact-footer,
-      .title-bar, #reg-nav-bar, #contact-date, #RegBannerMain, #reg-banner-container {
-        display: none;
-      }
-  </style>
+  <link rel="stylesheet" href="{{url_for('static', filename="css/reset.css")}}">
+  <link rel="stylesheet" href="{{url_for('static', filename="css/main.css")}}">
+  <link rel="stylesheet" href="{{url_for('static', filename="css/listing.css")}}">
 </head>
 <body>
-  <a href="javascript: history.go(-1)">Back to search</a>
+  <header>
+    <button type="button" class="btn" onclick="javascript: history.go(-1)">Back to search</button>
+  </header>
   {{listing | safe}}
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="{{url_for('static', filename="js/listing.js")}}"></script>
