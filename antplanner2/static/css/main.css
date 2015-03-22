@@ -53,6 +53,9 @@ body {
   border-color: #204d74;
 }
 
+#cal {
+	position: relative;
+}
 #soc {
 	height: 100%;
 	width: 50%;
@@ -61,7 +64,7 @@ body {
 
 /* weekly calendar overrides */
 .wc-header {
-	border: none;
+	background: #fff;
 }
 .wc-cal-event {
 	font-size: 10px !important;

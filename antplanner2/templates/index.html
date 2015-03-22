@@ -30,9 +30,10 @@
         </div>
         <div id="cal-ctrl">
           <button type="button" class="btn" onclick="javascript:print()">Print</button>
-          <button type="button" id="save-btn" class="btn" onclick="javascript:void(0)">Save</button>
-          <button type="button" id="load-btn" class="btn" onclick="javascript:void(0)">Load</button>
-          <button type="button" id="clear-cal-btn" class="btn" onclick="javascript:void(0)">Clear</button>
+          <button type="button" id="save-btn" class="btn">Save</button>
+          <button type="button" id="load-btn" class="btn">Load</button>
+          <button type="button" id="clear-cal-btn" class="btn">Clear</button>
+          <button type="button" id="resize-btn" class="btn">Size</button>
         </div>
       </div>
       <div id="cal"></div>
@@ -214,13 +215,9 @@
 
         // TODO: toggle() deprecated
         $('#resize-btn').toggle(function() {
-          $('#soc').hide();
-          $('#left').animate({width: '100%'});
-          $('i', this).removeClass('icon-resize-full').addClass('icon-resize-small');
+          $('#cal').animate({width: '200%'});
         }, function() {
-          $('#soc').show()
-          $('#left').animate({width: '50%'});
-          $('i', this).removeClass('icon-resize-small').addClass('icon-resize-full');
+          $('#cal').animate({width: '100%'});
         });
       });
     </script>
