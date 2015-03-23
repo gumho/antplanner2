@@ -5,6 +5,9 @@ body {
 	margin: 0;
 	color: #333;
 }
+a {
+	color: #aaa;
+}
 
 #left {
 	width: 50%;
@@ -26,6 +29,10 @@ body {
 
 #upper #cal-ctrl {
 	float: right;
+}
+
+#main-nav h1 {
+	display: inline;
 }
 
 .btn {
