@@ -9,6 +9,7 @@ LOG = logging.getLogger(__name__)
 dev_mode = env.get('SERVER_SOFTWARE', '').startswith('Development')
 use_memcache = env['USE_MEMCACHE'].lower() == 'true'
 
+
 @app.route('/')
 def index():
     index_html = memcache.get('index')
