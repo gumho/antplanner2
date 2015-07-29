@@ -181,16 +181,3 @@ function isCourseAdded(courseCode, callback) {
 	});
 	return isAdded;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
