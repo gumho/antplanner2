@@ -10,14 +10,14 @@ def get_search():
     html = urlfetch.fetch("http://websoc.reg.uci.edu").content
     inner = BeautifulSoup(html, 'lxml').find(
         'form',
-        action='http://websoc.reg.uci.edu/perl/WebSoc').renderContents()
+        action='https://www.reg.uci.edu/perl/WebSoc/').renderContents()
     return unicode(inner, errors='ignore')
 
 
 def get_listing(form_data):
     encoded = urllib.urlencode(form_data)
     html = urlfetch.fetch(
-        "http://websoc.reg.uci.edu/perl/WebSoc",
+        "https://www.reg.uci.edu/perl/WebSoc/",
         payload=encoded,
         method=urlfetch.POST,
         headers={'Content-Type': 'application/x-www-form-urlencoded'}).content
