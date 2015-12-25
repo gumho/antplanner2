@@ -8,12 +8,15 @@ handlers:
 - url: /robots.txt
   static_files: antplanner2/static/robots.txt
   upload: antplanner2/static/robots.txt
+  secure: always
 
 - url: /static
   static_dir: antplanner2/static
+  secure: always
 
 - url: .*
   script: main.app
+  secure: always
 
 libraries:
 - name: jinja2
