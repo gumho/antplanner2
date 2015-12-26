@@ -39,7 +39,9 @@
       </div>
       <div id="cal"></div>
     </div>
-    <iframe src="{{url_for('websoc_search_form')}}" id="soc" frameborder="0"></iframe>
+    <div id="right">
+      <iframe src="{{url_for('websoc_search_form')}}" id="soc" frameborder="0"></iframe>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
@@ -58,13 +60,13 @@
           allowCalEventOverlap: true,
           overlapEventsSeparate: true,
           buttons: false,
-          height: function($calendar){ 
-            return $(window).height() - $('#upper').outerHeight(); 
+          height: function($calendar){
+            return $(window).height() - $('#upper').outerHeight();
           },
           draggable : function(calEvent, element) { return false; },
           resizable : function(calEvent, element) { return false; },
           eventClick : function(calEvent, element) {
-            var delCode = calEvent.groupId; 
+            var delCode = calEvent.groupId;
             $('.wc-cal-event').each(function(index, el) {
               var c = $(el).data().calEvent
               if( c.groupId == delCode ) {
@@ -92,7 +94,7 @@
 
             $courseRow.on('click', function() {
               var timeString = $(this).find('td').eq(LISTING_TIME_INDEX).html();
-              
+
               // Ignore if course is "TBA"
               if(timeString.indexOf('TBA') != -1) {
                 alert('Course is TBA');
@@ -136,7 +138,7 @@
                   }
                   $('#cal').weekCalendar("updateEvent", calEvent);
                 }
-              } 
+              }
 
               // Assign a color to the courses
               var colorPair = getRandomColorPair();
@@ -177,7 +179,7 @@
               if(data.success) {
                 alert('Schedule successfully saved!');
                 localStorage.username = username;
-              } 
+              }
               else {
                 alert('Problem saving schedule');
               }
@@ -216,13 +218,13 @@
 
         // TODO: toggle() deprecated
         $('#resize-btn').toggle(function() {
-          $('#cal').animate({width: '200%'});
           $(this).addClass('active');
           $('#soc').hide();
+          $('#cal').animate({width: '200%'});
         }, function() {
           $('#cal').animate({width: '100%'});
-          $(this).removeClass('active');
           $('#soc').show();
+          $(this).removeClass('active');
         });
       });
     </script>
