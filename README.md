@@ -14,14 +14,14 @@ Because the old code was maintainable, it was harder to fix bugs. It was faster 
 **Excuse to play with new technology**  
 Antplanner2 uses shiny new HTML5 APIs and various other technologies.
 
-There are a million other reasons but most importantly, this rewrite should benefit UCI students all around! 
+There are a million other reasons but most importantly, this rewrite should benefit UCI students all around!
 
 ## How to get up and running
 
 These instructions are going to be a bit esoteric for now. Bear with me until things are sorted out.
 
 1. Download and install the [Google AppEngine Python SDK](https://cloud.google.com/appengine/downloads)
-2. git clone http://github.com/gumho/antplanner2
+2. git clone https://github.com/gumho/antplanner2
 3. cd antplanner2
 4. dev_appserver.py .
 
@@ -37,7 +37,7 @@ Run the Integration tests with the runtests.py script available in the project r
 
 	runtests.py SDK_PATH tests
 
-On Mac OS X, the SDK_PATH is /usr/local/google_appengine by default (if you had the symlinks installed). 
+On Mac OS X, the SDK_PATH is /usr/local/google_appengine by default (if you had the symlinks installed).
 
 ## Compatibility
 
@@ -52,5 +52,3 @@ Currently, the following features are in use. I'll need to investigate further a
 ## Known Issues
 
 (See [Issues page](https://github.com/gumho/antplanner2/issues/) on Github project)
-
-
