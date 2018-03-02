@@ -52,3 +52,9 @@ Currently, the following features are in use. I'll need to investigate further a
 ## Known Issues
 
 (See [Issues page](https://github.com/gumho/antplanner2/issues/) on Github project)
+
+## License
+
+GNU General Public License v3.0
+
+See LICENSE for the full text.
