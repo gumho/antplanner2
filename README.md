@@ -3,6 +3,8 @@
 
 by Ryan Hsu
 
+> ⚠️⚠️⚠️ **Update 12/5/2020** ⚠️⚠️⚠️ The AntPlanner application on antplanner.appspot.com will be shutdown on January 31, 2021. For more information, see my message [here](https://github.com/gumho/antplanner2/wiki/AntPlanner-Is-Shutting-Down-Jan-31,-2021). The antplanner2 code will continue to remain available.
+
 This is a revamp of the original Antplanner. The motivation for the rewrite is mainly to improve Antplanner by improving code quality. There are a few reasons for this:
 
 **Foster code contribution**  
