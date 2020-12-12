@@ -3,25 +3,8 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: /robots.txt
-  static_files: antplanner2/static/robots.txt
-  upload: antplanner2/static/robots.txt
+
+- url: /
+  static_files: www/index.html
+  upload: www/index.html
   secure: always
-
-- url: /static
-  static_dir: antplanner2/static
-  secure: always
-
-- url: .*
-  script: main.app
-  secure: always
-
-libraries:
-- name: jinja2
-  version: latest
-
-- name: lxml
-  version: latest
-
-env_variables:
-  USE_MEMCACHE: true
